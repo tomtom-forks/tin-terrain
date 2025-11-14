@@ -236,7 +236,7 @@ static void remove_leading_dot(std::string& s)
 static FileFormat validate_output_format_for_mesh(const std::string& output_filename,
                                                   std::string output_format_str)
 {
-    auto file_ext = boost::filesystem::extension(output_filename);
+    auto file_ext = boost::filesystem::path(output_filename).extension().string();
     remove_leading_dot(file_ext);
     if(output_format_str == "auto")
     {
