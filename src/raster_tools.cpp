@@ -371,6 +371,7 @@ double raster_tools::sample_nearest_valid_avg(const RasterDouble& src,
 
     auto putpixel = [row, column, w, h, no_data_value, &src, &to_average, &avg_count](int x,
                                                                                       int y) {
+        if(avg_count >= MAX_AVERAGING_SAMPLES) return;
         const int64_t dest_r = row + y;
         const int64_t dest_c = column + x;
         double z = subsample_raster_3x3(src, no_data_value, w, h, dest_r, dest_c);
